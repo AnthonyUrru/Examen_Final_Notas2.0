@@ -113,15 +113,7 @@ namespace ExamenFinal_Notas.Controllers
             }
 
         }
-        [HttpGet]
-        public IActionResult Detalle(int id)
-        {
 
-            var etiqueta = _context.Etiquetas.ToList();
-            ViewBag.Etiquetas = _context.Etiqueta_Notas.Include(o => o.Etiqueta).ToList();
-            var nota = _context.Notas.Where(o => o.Id == id).FirstOrDefault();
-            return View(nota);
-        }
         [HttpGet]
         public IActionResult Eliminar(int id)
         {
@@ -133,6 +125,16 @@ namespace ExamenFinal_Notas.Controllers
             return RedirectToAction("Index");
         }
 
+        [HttpGet]
+        public IActionResult Detalle(int id)
+        {
+
+            var etiqueta = _context.Etiquetas.ToList();
+            ViewBag.Etiquetas = _context.Etiqueta_Notas.Include(o => o.Etiqueta).ToList();
+            var nota = _context.Notas.Where(o => o.Id == id).FirstOrDefault();
+            return View(nota);
+        }
+       
         public IActionResult Barra_Lateral()
         {
             return View();
